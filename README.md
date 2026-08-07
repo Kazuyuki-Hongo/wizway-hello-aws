@@ -1,33 +1,33 @@
 # wizway-hello-aws
 
-ウィズウェイ実績づくり向けの **Hello World** サンプル。  
-**React + Python Lambda + API Gateway (HTTP API)** のみ（DynamoDB なし）。
+ウィズウェイ実績づくり向けの **Hello World** サンプル、E 
+**React + Python Lambda + API Gateway (HTTP API)** のみ�E�EynamoDB なし）、E
 
-データが残る見本（雑メモボード）は別リポジトリ:  
+チE�Eタが残る見本�E�雑メモボ�Eド）�E別リポジトリ:  
 https://github.com/Kazuyuki-Hongo/wizway-memo-aws
 
-## 構成
+## 構�E
 
 ```
 backend/          Python Lambda (GET /hello)
-frontend/         React (Vite) — Hello World 表示
+frontend/         React (Vite)  EHello World 表示
 template.yaml     SAM (HTTP API + S3 + CloudFront)
 samconfig.toml    stack: wizway-hello-aws
 .cursor/mcp.json  AWS Serverless MCP (profile=deploy)
 ```
 
-### 構成図
+### 構�E図
 
 ![AWS architecture](docs/images/hello-architecture.png)
 
-1. ブラウザが CloudFront → S3 から画面ファイルを取得  
-2. ブラウザ内で React が起動  
-3. React が API Gateway の `/hello` を呼ぶ  
-4. Lambda が JSON を返す  
+1. ブラウザぁECloudFront ↁES3 から画面ファイルを取征E 
+2. ブラウザ冁E�� React が起勁E 
+3. React ぁEAPI Gateway の `/hello` を呼ぶ  
+4. Lambda ぁEJSON を返す  
 
-## 動いている画面（デプロイ後に追記）
+## 動いてぁE��画面�E�デプロイ後に追記！E
 
-デプロイ後、Outputs の `FrontendUrl` / `HelloEndpoint` をここに書く。
+チE�Eロイ後、Outputs の `FrontendUrl` / `HelloEndpoint` をここに書く、E
 
 ## 前提
 
@@ -36,13 +36,13 @@ aws sso login --profile deploy
 aws sts get-caller-identity --profile deploy
 ```
 
-Docker Desktop（`sam local` 用）:
+Docker Desktop�E�Esam local` 用�E�E
 
 ```powershell
 winget install -e --id Docker.DockerDesktop
 ```
 
-## デプロイ
+## チE�Eロイ
 
 ```powershell
 sam build
@@ -76,7 +76,7 @@ sam local start-api
 curl http://127.0.0.1:3000/hello
 ```
 
-フロント:
+フロンチE
 
 ```powershell
 cd frontend
@@ -87,5 +87,5 @@ npm run dev
 
 ## 関連
 
-- 雑メモ（DynamoDB）: https://github.com/Kazuyuki-Hongo/wizway-memo-aws
-- 学習パック: https://github.com/Kazuyuki-Hongo/ai-utilization-pack （`3.実績づくり向け/04`）
+- 雑メモ�E�EynamoDB�E�E https://github.com/Kazuyuki-Hongo/wizway-memo-aws
+- 学習パチE��: https://github.com/Kazuyuki-Hongo/ai-utilization-pack �E�E3.実績づくり向け/04`�E�E
