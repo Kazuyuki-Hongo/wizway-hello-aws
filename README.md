@@ -3,7 +3,7 @@
 ウィズウェイ実績づくり向けのサンプル。  
 最小構成の **Hello World**（永続化なし）。
 
-**React + Python Lambda + API Gateway (HTTP API)**。DynamoDB は含まない。
+**React + TypeScript + Python Lambda + API Gateway (HTTP API)**。DynamoDB は含まない。
 
 データが残る版（雑メモボード）はこちら:  
 https://github.com/Kazuyuki-Hongo/wizway-memo-aws
@@ -17,7 +17,7 @@ https://github.com/Kazuyuki-Hongo/wizway-memo-aws
 
 ```
 backend/          Python Lambda (GET /hello)
-frontend/         React (Vite) — Hello World 表示
+frontend/         React + TypeScript (Vite) — Hello World 表示
 template.yaml     SAM (HTTP API + S3 + CloudFront)
 samconfig.toml    stack: wizway-hello-aws
 .cursor/mcp.json  AWS Serverless MCP (profile=deploy)
@@ -28,8 +28,8 @@ samconfig.toml    stack: wizway-hello-aws
 ![AWS architecture](docs/images/hello-architecture.png)
 
 1. ブラウザが CloudFront → S3 のフロントを取得する  
-2. 画面に載った React が表示される  
-3. React が API Gateway の `/hello` を呼ぶ  
+2. 画面に載った React（TypeScript）が表示される  
+3. その画面が API Gateway の `/hello` を呼ぶ  
 4. Lambda が JSON を返す  
 
 ## 前提

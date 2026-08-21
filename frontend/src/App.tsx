@@ -2,6 +2,11 @@ import { useEffect, useState } from 'react'
 
 const API_URL = (import.meta.env.VITE_API_URL || '').replace(/\/$/, '')
 
+type HelloResponse = {
+  message?: string
+  service?: string
+}
+
 export default function App() {
   const [message, setMessage] = useState('Loading...')
   const [error, setError] = useState('')
@@ -15,10 +20,10 @@ export default function App() {
     fetch(`${API_URL}/hello`)
       .then(async (res) => {
         if (!res.ok) throw new Error(`HTTP ${res.status}`)
-        return res.json()
+        return res.json() as Promise<HelloResponse>
       })
       .then((data) => setMessage(data.message || JSON.stringify(data)))
-      .catch((err) => setError(String(err)))
+      .catch((err: unknown) => setError(String(err)))
   }, [])
 
   return (
