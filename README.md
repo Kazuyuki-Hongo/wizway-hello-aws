@@ -153,4 +153,6 @@ npm run dev
 ## 関連
 
 - 雑メモ（DynamoDB）: https://github.com/Kazuyuki-Hongo/wizway-memo-aws
-- 学習パック: https://github.com/Kazuyuki-Hongo/ai-utilization-pack （`3.実績づくり向け/04`）
+- 学習パック（ページの位置は同じ。案内された入口を開く）
+  - ウィズウェイ: https://github.com/Kazuyuki-Hongo/ai-utilization-pack （`3.実績づくり向け/04`）
+  - それ以外のグループ会社: https://github.com/Kazuyuki-Hongo/ai-utilization-pack-common （`3.実績づくり向け/04`）
