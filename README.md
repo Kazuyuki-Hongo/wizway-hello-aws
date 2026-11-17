@@ -90,11 +90,19 @@ sam local start-api
 
 起動すると `Running on http://127.0.0.1:3000` のように API の URL が表示されます。この URL をメモします。
 
+Windows（PowerShell）:
+
 ```powershell
+curl.exe http://127.0.0.1:3000/hello
+```
+
+Linux / macOS:
+
+```bash
 curl http://127.0.0.1:3000/hello
 ```
 
-`message` と `service` を含む JSON が返れば完了です。Linux / macOS でも同じコマンドを実行します。
+`message` と `service` を含む JSON が返れば完了です。Windows PowerShell 5.1 では `curl` が別のコマンドになるので、`curl.exe` と書きます。
 
 ### バックエンド（Docker が無い場合）
 
@@ -124,8 +132,8 @@ print(res["statusCode"], json.loads(res["body"]))
 EOF
 ```
 
-`200 {'message': 'Hello World', 'service': 'wizway-hello-aws'}` のように、`message` と `service` が見えれば完了です。この方法では API の URL は出ないので、フロントは表示できません。画面まで確認したいときは Docker を使う方法で進めます。
-Docker が無いときの画面の確認は、学習パックのコースC 05（Playwright）の『Docker が無いとき』の方法を使う。
+`200 {'message': 'Hello World', 'service': 'wizway-hello-aws'}` のように、`message` と `service` が見えれば完了です。Docker が無い人のローカルの確認は、ここまでと、次の「フロント」で `npm run dev` を実行して、API が未設定のときの表示が出ることの2つです。この方法では API の URL は出ないので、画面から API を呼ぶところは、Docker を使う方法か、クラウドに載せてから確かめます。
+1本目が動いたあとなら、学習パックのコースC 05（Playwright）の「Docker が無いとき」の方法でも、画面の動きを確かめられます。
 
 ### フロント
 
@@ -150,6 +158,8 @@ npm run dev
 ```
 
 `npm run dev` が表示する URL（例: `http://localhost:5173`）をブラウザで開きます。
+
+Docker が無い場合は、`.env.local` を作らずに `cd frontend`、`npm ci`、`npm run dev` だけを実行します。画面に「(VITE_API_URL 未設定 — ローカル確認用)」と出れば、フロントのローカル確認は完了です。
 
 ## 関連
 
