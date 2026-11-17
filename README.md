@@ -1,6 +1,6 @@
 # wizway-hello-aws
 
-ウィズウェイ実績づくり向けのサンプル。  
+実績づくり向けのサンプル。  
 最小構成の **Hello World**（永続化なし）。
 
 **React + TypeScript + Python Lambda + API Gateway (HTTP API)**。DynamoDB は含まない。
@@ -44,8 +44,8 @@ AWS Serverless MCP（AWS のデプロイ操作を Agent から使えるように
 ## 前提
 
 ```powershell
-aws sso login --profile deploy
-aws sts get-caller-identity --profile deploy
+aws sso login --profile <自分のプロファイル名>
+aws sts get-caller-identity --profile <自分のプロファイル名>
 ```
 
 Docker Desktop（`sam local` 用）:
@@ -58,7 +58,7 @@ winget install -e --id Docker.DockerDesktop
 
 ```powershell
 sam build
-sam deploy --profile deploy
+sam deploy --profile <自分のプロファイル名>
 ```
 
 `frontend/.env.production`:
@@ -71,8 +71,8 @@ VITE_API_URL=https://xxxx.execute-api.ap-northeast-1.amazonaws.com/prod
 cd frontend
 npm ci
 npm run build
-aws s3 sync dist/ s3://<FrontendBucketName>/ --delete --profile deploy
-aws cloudfront create-invalidation --distribution-id <CloudFrontDistributionId> --paths "/*" --profile deploy
+aws s3 sync dist/ s3://<FrontendBucketName>/ --delete --profile <自分のプロファイル名>
+aws cloudfront create-invalidation --distribution-id <CloudFrontDistributionId> --paths "/*" --profile <自分のプロファイル名>
 ```
 
 ## ローカル確認
@@ -125,6 +125,7 @@ EOF
 ```
 
 `200 {'message': 'Hello World', 'service': 'wizway-hello-aws'}` のように、`message` と `service` が見えれば完了です。この方法では API の URL は出ないので、フロントは表示できません。画面まで確認したいときは Docker を使う方法で進めます。
+Docker が無いときの画面の確認は、学習パックのコースC 05（Playwright）の『Docker が無いとき』の方法を使う。
 
 ### フロント
 
@@ -135,7 +136,7 @@ Windows（PowerShell）:
 ```powershell
 cd frontend
 npm ci
-# .env.local に VITE_API_URL=http://127.0.0.1:3000
+Set-Content -Path .env.local -Value "VITE_API_URL=<表示された API の URL>"
 npm run dev
 ```
 
@@ -144,7 +145,7 @@ Linux / macOS:
 ```bash
 cd frontend
 npm ci
-export VITE_API_URL=http://127.0.0.1:3000
+echo "VITE_API_URL=<表示された API の URL>" > .env.local
 npm run dev
 ```
 
