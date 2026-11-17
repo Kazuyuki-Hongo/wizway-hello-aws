@@ -4,7 +4,9 @@ import json
 def lambda_handler(event, context):
     event = event or {}
     path = event.get("rawPath") or event.get("path") or "/hello"
-    if path.rstrip("/") not in ("", "/hello"):
+    normalized = path.rstrip("/")
+    # HTTP API のステージ付き rawPath（例: /prod/hello）にも合わせる
+    if normalized not in ("",) and not normalized.endswith("/hello"):
         return {
             "statusCode": 404,
             "headers": {
